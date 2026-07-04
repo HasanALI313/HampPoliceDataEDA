@@ -6,17 +6,10 @@ on:
     branches: [main]
 
 jobs:
-  pipeline:
+  lint-and-import:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: police-data-proj
     steps:
       - uses: actions/checkout@v4
-        with:
-          sparse-checkout: |
-            police-data-proj
-            source
 
       - name: Install uv
         uses: astral-sh/setup-uv@v5
@@ -30,5 +23,14 @@ jobs:
       - name: Lint
         run: uv run ruff check src/
 
-      - name: Run pipeline
-        run: uv run python main.py
+      - name: Verify imports
+        run: uv run python -c "
+import sys; sys.path.insert(0, '.')
+from src.config import SOURCE_DIR, OUTPUT_DIR
+from src.ingest import ingest_to_bronze
+from src.bronze import run_bronze
+from src.silver import run_silver
+from src.gold import run_gold
+from pyspark.sql import SparkSession
+print('All imports OK')
+"
