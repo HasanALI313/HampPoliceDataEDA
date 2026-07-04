@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb*
+.git/
+.gitignore
+README.md
+output/

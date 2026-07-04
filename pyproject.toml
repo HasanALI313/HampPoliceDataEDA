@@ -1,13 +1,11 @@
 [project]
 name = "police-data-proj"
-version = "0.1.0"
-description = "Add your description here"
+version = "1.0.0"
+description = "UK Police Crime Data Pipeline — cleans and analyses Hampshire Constabulary crime data"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "duckdb>=1.5.4",
-    "pandas>=3.0.3",
-    "pydantic>=2.13.4",
+    "pyspark>=3.5.5",
 ]
 
 [dependency-groups]

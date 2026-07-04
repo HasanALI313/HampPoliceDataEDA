@@ -1,0 +1,9 @@
+services:
+  pipeline:
+    build: .
+    volumes:
+      - ../source:/source
+      - ./output:/app/output
+    environment:
+      - POLICE_SOURCE_DIR=/source
+      - POLICE_OUTPUT_DIR=/app/output
